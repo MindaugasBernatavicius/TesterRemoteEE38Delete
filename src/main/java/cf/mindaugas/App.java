@@ -1,5 +1,6 @@
 package cf.mindaugas;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class App {
@@ -99,14 +100,49 @@ public class App {
         System.out.println("This text contains a bad word!".indexOf("bad"));
         System.out.println("This text contains a bad word!".lastIndexOf("bad"));
 
-        // TODO :: substring(), equals()
-    }
+        System.out.println("Is 5 == 5: " + (5 == 5));
+        System.out.println("Is 'John' == 'John': " + ("John" == "John")); // warning
+        System.out.println("Is 'John' == 'John': " + "John".equals("John"));
 
+
+        System.out.println("Mindaugas".substring(5));
+        //                  ||||||
+        //                  012345
+
+
+        // System.out.println("Legio".substring(9)); // Exception is thrown
+        // System.out.println(">>>>>>");
+
+        System.out.println("Rud".replace("u", "e"));
+        System.out.println("RUD".replace("u", "e"));
+
+        System.out.println(Arrays.toString("This is a sentence".split(" "))); // array - collection of values
+
+
+        System.out.println("Mindaugas".concat(" ").concat("Bern."));
+        System.out.println("Mindaugas" + " " + "Bern."); // overloaded operator
+        System.out.println("This person age: " + (5 + 6));
+        System.out.println("5" + "6"); // numeric strings, this will concatenation
+
+
+        System.out.println("A");
+        System.out.println("B");
+
+        System.out.format("_%10s_%10s_\n", "__________", "__________");
+        System.out.format("|%10s|%10s|\n", "John", "Johnson");
+        System.out.format("|%10s|%10s|\n", "Peter", "Peterson");
+        System.out.format("|%10s|%10s|\n", "Anna", "Benson");
+        System.out.format("_%10s_%10s_\n", "__________", "__________");
+    }
     public static void _08_GettingUserInput(){
         Scanner scanner = new Scanner(System.in);
         System.out.print("Please enter your name: ");
         String name = scanner.nextLine();
         System.out.println("Hello " + name + "!");
+    }
+
+    public static void _09_Conditionals(){
+
     }
 
     public static void main(String[] args) {
