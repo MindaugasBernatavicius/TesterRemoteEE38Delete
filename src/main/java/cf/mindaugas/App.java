@@ -1,7 +1,6 @@
 package cf.mindaugas;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class App {
     public static void _00_HelloWorld(){
@@ -140,9 +139,182 @@ public class App {
         String name = scanner.nextLine();
         System.out.println("Hello " + name + "!");
     }
-
     public static void _09_Conditionals(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Please enter your age: ");
+        int age = scanner.nextInt();
 
+        // if(age >= 18) {
+        //     System.out.println("Welcome!"); // if true
+        // } else {
+        //     System.out.println("We only admit adults!"); // if false
+        // }
+
+        // if(age < 16 && age > 0) {
+        //     System.out.println("We only admit adults!");
+        // } else if(age >= 16 && age < 18) {
+        //     System.out.println("You can enter, but you are not allowed to buy alcohol!");
+        // } else if(age >= 18 && age < 120) {
+        //     System.out.println("Welcome!");
+        // } else {
+        //     System.out.println("Invalid age!");
+        // }
+
+        switch (age){
+            case 16:
+                System.out.println("The age is 16");
+                break;
+            case 17:
+                System.out.println("The age is 17");
+                break;
+            default:
+                System.out.println("Default case");
+        }
+    }
+    public static void _10_variableScope(){
+        if(true){
+            int someInt = 55;
+            System.out.println("If(true) was executed");
+
+            if(true){
+                // This is the scope we are in, on this line: App -> _10_variableScope -> if -> if
+                System.out.println("Nested if can see the variable in parent if: " + someInt);
+            }
+        }
+
+        // System.out.println(someInt); // compilation error
+    }
+    public static void _11_loops(){
+        // System.out.println("Hello");
+        // System.out.println("Hello");
+        // System.out.println("Hello");
+        // System.out.println("Hello");
+
+        // for(int counter = 0; counter <= 5; counter++){ // counter += 1;
+        //     System.out.println("Hello" + counter);
+        // }
+        //
+        // int counter = 0;
+        // for(;counter <= 5;){
+        //     System.out.println("Hello" + counter);
+        //     counter++;
+        // }
+
+
+        // Scanner scanner = new Scanner(System.in);
+        // System.out.print("Please enter your name: ");
+        // String name = scanner.nextLine();
+        //
+        // while(true){
+        //     System.out.println("Name was: " + name);
+        //     System.out.print("Press c (continue), q (quit): ");
+        //     String choice = scanner.nextLine();
+        //     if(choice.equalsIgnoreCase("q")){
+        //         break;
+        //     }
+        // }
+
+
+        // for(int counter = 1; counter <= 10; counter++){
+        //     if(counter % 2 != 0){
+        //         continue;
+        //     }
+        //
+        //     System.out.println(counter + " * " + counter + ": " + (counter * counter));
+        // }
+
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Please enter your name: ");
+        String name = scanner.nextLine();
+        String userChoice;
+
+        do {
+            System.out.println("Name was: " + name);
+            System.out.print("Press c (continue), q (quit): ");
+            userChoice = scanner.nextLine();
+        } while(!userChoice.equalsIgnoreCase("q"));
+
+        System.out.println("Program end, good bye!");
+    }
+    public static void _12_arrays(){
+        // int grade = 9;
+        int[] grades = { 9, 10, 8, 8, 7, 10 };
+        // System.out.println(grades[1]); // indexing into an array, getting the value by index
+
+        // for(int index = 0; index < grades.length; index++){
+        //     System.out.println(grades[index]);
+        // }
+
+        // // enhanced for loop (for-each loop)
+        // for (int grade : grades) {
+        //     System.out.println(grade);
+        // }
+
+        // ... sometimes we will still want to use just a regular for loop
+        // ... for example when addressing every second (n-th) value in an array
+        // for(int index = 0; index < grades.length; index += 2){
+        //     System.out.println(grades[index]); // grades[0], grades[1], ... , grades[n]
+        // }
+
+        // int[] itemWeightsGrams = { 100, 150, 125, 95, 105, 215 };
+
+        int[] itemWeightsGrams = new int[10];
+        itemWeightsGrams[0] = 100;
+        itemWeightsGrams[1] = 150;
+        itemWeightsGrams[2] = 125;
+        itemWeightsGrams[3] = 95;
+        itemWeightsGrams[4] = 105;
+        itemWeightsGrams[5] = 215;
+
+        System.out.println(Arrays.toString(itemWeightsGrams));
+    }
+    public static void _13_minimalAlgorithmsWithArrays_findMaximum(){
+        // Algorithm: a sequence of operations to achieve some result/solve some problem.
+        int[] itemWeightsGrams = { 100, 150, 125, 950, 105, 215, 520, 95, 236 };
+
+        if(itemWeightsGrams.length > 0){
+            int currentHeaviest = itemWeightsGrams[0];
+            for (int currentItemWeigh: itemWeightsGrams) {
+                if(currentHeaviest < currentItemWeigh){
+                    currentHeaviest = currentItemWeigh;
+                }
+            }
+            System.out.println("The heaviest item: " + currentHeaviest);
+        } else {
+            System.out.println("Array is empty, so heaviest item can't be determined!");
+        }
+    }
+    public static void _14_minimalAlgorithmsWithArrays_findAverage(){
+        // average is sum divided by count
+
+        int[] itemWeightsGrams = { 100, 150, 125, 950, 105, 215, 520, 95, 231 };
+        int sum = 0;
+        for (int itemWeightGrams: itemWeightsGrams) {
+            sum += itemWeightGrams;
+        }
+        double average = (double) sum / itemWeightsGrams.length;
+        System.out.println("The total weight of all items: " + sum);
+        System.out.println("The average weight: " + average);
+    }
+    public static void _15_minimalAlgorithmsWithArrays_sorting(){
+        Integer[] itemWeightsGrams = { 100, 150, 125, 950, 105, 215, 520, 95, 231 };
+        System.out.println("Before sorting: " + Arrays.toString(itemWeightsGrams));
+        // Arrays.sort(itemWeightsGrams);
+        Arrays.sort(itemWeightsGrams, Collections.reverseOrder());
+        System.out.println("After sorting: " + Arrays.toString(itemWeightsGrams));
+    }
+    public static void _16_ArrayList(){
+        ArrayList<String> studentNames = new ArrayList<>();
+        studentNames.add("John");
+        studentNames.add("Peter");
+        studentNames.add("Anna");
+
+        studentNames.get(0); // studentName[0]
+
+        for (String studentName: studentNames) {
+            System.out.println(studentName);
+        }
     }
 
     public static void main(String[] args) {
@@ -153,7 +325,15 @@ public class App {
         // _04_LogicalOperators();
         // _05_OtherOperators();
         // _06_OperatorPrecedence();
-        _07_Strings();
+        // _07_Strings();
         // _08_GettingUserInput();
+        // _09_Conditionals();
+        // _10_variableScope();
+        // _11_loops();
+        // _12_arrays();
+        // _13_minimalAlgorithmsWithArrays_findMaximum();
+        // _14_minimalAlgorithmsWithArrays_findAverage();
+        // _15_minimalAlgorithmsWithArrays_sorting();
+        _16_ArrayList();
     }
 }
